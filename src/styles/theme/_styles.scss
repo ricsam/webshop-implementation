@@ -1,0 +1,218 @@
+
+.navbar-toggler-icon {
+  display: inline-block;
+  width: 1.5em;
+  height: 1.5em;
+  vertical-align: middle;
+  content: "";
+  background: no-repeat center center;
+  background-size: 100% 100%;
+  @include hover-focus {
+    cursor: pointer;
+  }
+}
+
+.navbar {
+
+  font-family: $font-family-sans-serif;
+
+
+  /* transition */
+  &, & .navbar-brand {
+    // transition-property: display;
+    // transition-duration: .2s;
+    // transition-timing-function: linear;
+  }
+
+  .navbar-content {
+    padding: 0;
+
+    .search-button {
+      border: 1px solid $input-border-color;
+    }
+
+
+    .menu-items {
+      border-top: 1px solid $gray-300;
+      width: 100%;
+      display: flex;
+      flex-wrap: wrap;
+      align-items: center;
+      justify-content: space-between; 
+      margin-top: -1px;
+
+      // transition-property: display opacity;
+      // transition-duration: ;
+      // transition-delay: 0.5s;
+      // transition-timing-function: linear;
+
+      .item {
+        text-transform: uppercase;
+        font-weight: bold;
+        border-bottom: 1px solid transparent;
+        padding: 5px 0;
+        margin: 0;
+        color: theme-color('dark');
+        @include hover-focus {
+          cursor: pointer;
+          border-color: $gray-300;
+        }
+      }
+    }
+  }
+
+  &.active .menu-items {
+    opacity: 0;
+  }
+
+  .input-group {
+    padding: 10px 0;
+    input {
+      background: darken($blue, 3%);
+      color: $gray-300;
+    }
+    button {
+    }
+  }
+
+  &, &.inactive > .navbar-brand {
+    background: $white;
+    color: theme-color('dark');
+  }
+
+
+  &.inactive {
+    .navbar-toggler {
+      border: 1px solid $gray-300;
+      .navbar-toggler-icon {
+        background-image: $navbar-light-toggler-icon-bg;
+      }
+    }
+  }
+
+  /* disable all transitions */
+  & .navbar-content > .collapsing {
+    transition-duration: 0s;
+  }
+
+  /* only disable the retracting transition */
+  &.inactive {
+    .navbar-content > .collapsing {
+      transition-duration: 0s;
+    }
+  }
+  &.active {
+
+    &, .navbar-brand {
+      background: $blue;
+      color: $white; 
+    }
+
+    .navbar-toggler-icon {
+      background-image: $navbar-dark-toggler-icon-bg;
+    }
+  }
+}
+
+/* navbar */
+.navbar-brand {
+  display: inline-block;
+  padding-top: $navbar-brand-padding-y;
+  padding-bottom: $navbar-brand-padding-y;
+  margin-right: $navbar-padding-x;
+  font-size: $navbar-brand-font-size;
+  line-height: inherit;
+  white-space: nowrap;
+  text-transform: uppercase;
+  font-weight: bold;
+
+  font-family: $font-family-serif;
+
+
+  @include hover-focus {
+    text-decoration: none;
+  }
+}
+
+.clickable, .nav-link {
+  @include hover-focus {
+    cursor: pointer;
+  }
+}
+
+.nav-tabs {
+  border-bottom: 0 solid $nav-tabs-border-color;
+
+  display: flex;
+  flex-wrap: wrap;
+  align-items: center;
+  justify-content: space-between; 
+  margin-bottom: 30px;
+
+  .nav-item {
+    margin-bottom: -$nav-tabs-border-width;
+    a {
+      padding: 0;
+      font-size: 14px;
+      text-transform: uppercase;
+    }
+  }
+
+  .nav-link {
+    border-width: 0 0 1px 0;
+    border-style: solid;
+    border-color: transparent;
+
+    @include border-top-radius($nav-tabs-border-radius);
+
+
+    &.disabled {
+      color: $nav-link-disabled-color;
+      background-color: transparent;
+      border-color: transparent;
+    }
+  }
+
+  .nav-link.active,
+  .nav-item.show .nav-link {
+    text-align: left;
+    color: $white;
+    background-color: transparent;
+    border-color: transparent;
+    font-weight: bold;
+
+    @include hover-focus {
+      border-color: theme-color('light');
+    }
+  }
+
+  .dropdown-menu {
+    // Make dropdown border overlap tab border
+    margin-top: -$nav-tabs-border-width;
+    // Remove the top rounded corners here since there is a hard edge above the menu
+    @include border-top-radius(0);
+  }
+}
+
+.tab-pane {
+  text-align: left;
+  .row {
+    margin-top: 15px;
+  }
+  ul {
+    padding: 0;
+    margin-bottom: 10px;
+  }
+  h6 {
+    margin-bottom: 10px;
+    text-transform: uppercase;
+  }
+  li {
+    color: $gray-300;
+    @include list-unstyled;
+    @include hover-focus {
+      cursor: pointer;
+      text-decoration: underline;
+    }
+  }
+}
